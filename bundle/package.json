@@ -1,6 +1,6 @@
 {
     "name": "@noirhare/dsh-bundle",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "author": "NoirHare",
     "license": "MIT",
     "repository": {
@@ -16,8 +16,9 @@
         "access": "public"
     },
     "dependencies": {
-        "@noirhare/dsh-host-webserver": "workspace:^",
+        "@deepseek-ai/dsh-web-fetch-http": "0.0.1-rc.5",
         "@noirhare/dsh-agent-presets": "workspace:^",
+        "@noirhare/dsh-host-webserver": "workspace:^",
         "@noirhare/dsh-nr-agent-presets": "workspace:^"
     },
     "dsh": {
