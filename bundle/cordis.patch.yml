@@ -5,6 +5,8 @@
   disabled: true
 
 - insert:
+  - name: "@deepseek-ai/dsh-web-fetch-http"
+  
   - name: "@noirhare/dsh-host-webserver"
     inject:
       - webStartup
