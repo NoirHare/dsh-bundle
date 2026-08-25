@@ -1,0 +1,28 @@
+{
+    "name": "@noirhare/dsh-bundle",
+    "version": "0.0.1",
+    "author": "NoirHare",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NoirHare/dsh-bundle.git",
+        "directory": "bundle"
+    },
+    "type": "module",
+    "files": [
+        "cordis.patch.yml"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@noirhare/dsh-host-webserver": "workspace:^",
+        "@noirhare/dsh-agent-presets": "workspace:^",
+        "@noirhare/dsh-nr-agent-presets": "workspace:^"
+    },
+    "dsh": {
+        "bundle": {
+            "patch": "./cordis.patch.yml"
+        }
+    }
+}

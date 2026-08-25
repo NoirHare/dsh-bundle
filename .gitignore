@@ -1,0 +1,13 @@
+# vscde
+/.vscode
+
+# mise
+/mise.toml
+
+# node_modules
+/node_modules
+/bundle/node_modules
+/packages/*/node_modules
+
+# lib
+/packages/*/lib

@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "author": "NoirHare",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r build"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.23.0",
+      "onFail": "download"
+    }
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/node": "^26.2.0",
+    "eslint": "^10.9.0",
+    "globals": "^17.11.0",
+    "jiti": "^2.7.0",
+    "tsdown": "^0.22.14",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.67.0"
+  }
+}

@@ -1,0 +1,33 @@
+{
+    "name": "@noirhare/dsh-host-webserver",
+    "version": "0.0.1",
+    "author": "NoirHare",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NoirHare/dsh-bundle.git",
+        "directory": "packages/host-webserver"
+    },
+    "type": "module",
+    "exports": {
+        ".": "./lib/index.js",
+        "./invariant": "./lib/invariant.js",
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "lib"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "tsdown",
+        "dev": "tsdown --watch",
+        "typecheck": "tsc --noEmit"
+    },
+    "peerDependencies": {
+        "@deepseek-ai/dsh-host-webserver": "^0.1.1-rc.2",
+        "@deepseek-ai/schemastery": "^3.18.1",
+        "@deepseek-ai/cordis": "^4.0.1"
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "name": "@noirhare/dsh-nr-agent-presets",
+    "version": "0.0.1",
+    "author": "NoirHare",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NoirHare/dsh-bundle.git",
+        "directory": "packages/nr-agent-presets"
+    },
+    "type": "module",
+    "exports": {
+        ".": "./lib/index.js",
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "lib"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "tsdown",
+        "dev": "tsdown --watch",
+        "typecheck": "tsc --noEmit"
+    },
+    "peerDependencies": {
+        "@noirhare/dsh-agent-presets": "workspace:^",
+        "@deepseek-ai/cordis": "^4.0.1"
+    }
+}
