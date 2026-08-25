@@ -11,11 +11,11 @@ type StylisticRules = Partial<{
 
 export default defineConfig([
     {
-        files: ["**/*.{js,mjs,cjs,ts,mts,cts}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.node }
+        files: ["eslint.config.ts","packages/*/src/**/*.{js,mjs,cjs,ts,mts,cts}", "packages/*/src/tsdown.config.ts"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.node }
     },
     tseslint.configs.recommended,
     {
-        files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
+        files: ["eslint.config.ts","packages/*/src/**/*.{js,mjs,cjs,ts,mts,cts}", "packages/*/src/tsdown.config.ts"],
         plugins: { "@stylistic": stylistic },
         rules: {
             "@stylistic/indent": ["error", 4],

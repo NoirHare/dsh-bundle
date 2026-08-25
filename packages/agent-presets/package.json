@@ -1,6 +1,6 @@
 {
     "name": "@noirhare/dsh-agent-presets",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "author": "NoirHare",
     "license": "MIT",
     "repository": {
@@ -22,8 +22,8 @@
     },
     "scripts": {
         "build": "tsdown",
-        "dev": "tsdown --watch",
-        "typecheck": "tsc --noEmit"
+        "typecheck": "tsc --noEmit",
+        "prepublish": "pnpm typecheck && pnpm build"
     },
     "peerDependencies": {
         "@deepseek-ai/dsh-agent-presets": "^0.1.1-rc.2",

@@ -1,14 +1,25 @@
 import { AgentPreset, AgentPresets, PresetRoot, discoverPresets } from "@deepseek-ai/dsh-agent-presets";
 
+import Path from "node:path";
+import FS from "node:fs";
+
 export default class NRAgentPresets extends AgentPresets {
-    private extraRoots = new Set<string>();
+    readonly extraRoots = new Map<string, string>();
 
-    registerRoot(path: string): void {
-        this.extraRoots.add(path);
-    }
+    registerRoot(id: string, dir: string): () => void {
+        const path = Path.resolve(dir);
+        try {
+            if (!FS.statSync(path).isDirectory()) throw new Error(`root "${id}" is not a directory: ${path}`);
+        } catch (e) {
+            throw new Error(`root "${id}": path not accessible: ${path}`, { cause: e });
+        }
 
-    unregisterRoot(path: string): void {
-        this.extraRoots.delete(path);
+        if (this.extraRoots.has(id)) throw new Error(`duplicate root id: ${id}`);
+        this.extraRoots.set(id, path);
+
+        return () => {
+            this.extraRoots.delete(id);
+        };
     }
 
     override async list(): Promise<AgentPreset[]> {
@@ -17,7 +28,7 @@ export default class NRAgentPresets extends AgentPresets {
 
         const seen = new Set(base.map((preset) => preset.id));
         const extra = await discoverPresets(
-            [...this.extraRoots].map((path) => ({ path, trust: "system" }) satisfies PresetRoot),
+            [...new Set(this.extraRoots.values())].map((root) => ({ path: root, trust: "system" }) satisfies PresetRoot),
         );
         return [...base, ...extra.filter((preset) => !seen.has(preset.id))];
     }

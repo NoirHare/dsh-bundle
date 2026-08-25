@@ -1,6 +1,6 @@
 {
     "name": "@noirhare/dsh-nr-agent-presets",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "author": "NoirHare",
     "license": "MIT",
     "repository": {
@@ -21,8 +21,8 @@
     },
     "scripts": {
         "build": "tsdown",
-        "dev": "tsdown --watch",
-        "typecheck": "tsc --noEmit"
+        "typecheck": "tsc --noEmit",
+        "prepublish": "pnpm typecheck && pnpm build"
     },
     "peerDependencies": {
         "@noirhare/dsh-agent-presets": "workspace:^",
