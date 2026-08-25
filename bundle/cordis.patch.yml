@@ -1,8 +1,8 @@
 - id: "webserver"
-  disable: true
+  disabled: true
 
 - id: "agent-presets"
-  disable: true
+  disabled: true
 
 - insert:
   - name: "@noirhare/dsh-host-webserver"
