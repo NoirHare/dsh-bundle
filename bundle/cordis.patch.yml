@@ -16,4 +16,4 @@
     config:
       default: standard
 
-  - name: "@norihare/dsh-nr-agent-presets"
+  - name: "@noirhare/dsh-nr-agent-presets"
