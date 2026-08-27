@@ -19,3 +19,4 @@
       default: standard
 
   - name: "@noirhare/dsh-nr-agent-presets"
+  - name: "@noirhare/dsh-ui-notification"
