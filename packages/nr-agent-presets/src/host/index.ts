@@ -3,7 +3,7 @@ import NRAgentPresets from "@noirhare/dsh-agent-presets";
 import Path from "node:path";
 
 const id = "dsh-nr-agent-presets";
-const root = Path.resolve(import.meta.dirname, "agent-presets");
+const root = Path.resolve(import.meta.dirname, "..", "..", "agent-presets");
 
 export const inject = ["agentPresets"];
 

@@ -1,3 +1,6 @@
 packages:
-  - bundle
-  - packages/*
+  - "dsh-client-plugin"
+  - "bundle"
+  - "packages/*"
+allowBuilds:
+  esbuild: true

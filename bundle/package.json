@@ -1,14 +1,16 @@
 {
     "name": "@noirhare/dsh-bundle",
-    "version": "0.0.8",
-    "author": "NoirHare",
+    "version": "0.0.9",
     "license": "MIT",
+    "author": {
+        "name": "NoirHare",
+        "url": "https://github.com/NoirHare"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/NoirHare/dsh-bundle.git",
         "directory": "bundle"
     },
-    "type": "module",
     "files": [
         "cordis.patch.yml"
     ],
@@ -19,7 +21,8 @@
         "@deepseek-ai/dsh-web-fetch-http": "0.0.1-rc.5",
         "@noirhare/dsh-agent-presets": "workspace:^",
         "@noirhare/dsh-host-webserver": "workspace:^",
-        "@noirhare/dsh-nr-agent-presets": "workspace:^"
+        "@noirhare/dsh-nr-agent-presets": "workspace:^",
+        "@noirhare/dsh-ui-notification": "workspace:^"
     },
     "dsh": {
         "bundle": {
