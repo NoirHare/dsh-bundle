@@ -9,3 +9,6 @@
 /dsh-bundle/node_modules
 /dsh-client-plugin/node_modules
 /packages/*/node_modules
+
+# lib
+/packages/*/lib

@@ -31,7 +31,7 @@ export async function apply(ctx: ClientContext) {
                     const c = snapshot.byId[id];
 
                     // turn end
-                    if (p.running && !c.running) {
+                    if (p.running && !c.running && !document.hasFocus()) {
                         const n = new Notification(c.displayTitle, { body: "运行结束" });
                         n.addEventListener("click", (e) => {
                             e.preventDefault();
@@ -42,7 +42,7 @@ export async function apply(ctx: ClientContext) {
                     }
 
                     // pending
-                    if (p.pendingInteraction !== c.pendingInteraction && c.pendingInteraction) {
+                    if (p.pendingInteraction !== c.pendingInteraction && c.pendingInteraction && !document.hasFocus()) {
                         const n = new Notification(c.displayTitle, { body: `${c.pendingInteraction} 等待响应` });
                         n.addEventListener("click", (e) => {
                             e.preventDefault();
