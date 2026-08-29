@@ -1,6 +1,6 @@
 {
     "name": "@noirhare/dsh-ui-notification",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "license": "MIT",
     "author": {
         "name": "NoirHare",
@@ -12,7 +12,8 @@
         "directory": "packages/ui-notification"
     },
     "files": [
-        "lib"
+        "lib",
+        "cordis.patch.yml"
     ],
     "publishConfig": {
         "access": "public"
@@ -37,8 +38,9 @@
         "client": {
             "inject": [],
             "platform": "web"
+        },
+        "bundle": {
+            "patch": "./cordis.patch.yml"
         }
-    },
-    "dependencies": {
     }
 }

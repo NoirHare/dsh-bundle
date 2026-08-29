@@ -1,0 +1,3 @@
+- insert:
+  - id: ui-notification
+    name: "@noirhare/dsh-ui-notification"
