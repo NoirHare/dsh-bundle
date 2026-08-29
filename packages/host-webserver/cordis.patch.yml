@@ -1,0 +1,11 @@
+- id: "webserver"
+  disabled: true
+
+- insert:
+  - id: nr-webserver
+    name: "@noirhare/dsh-host-webserver"
+    inject:
+      - webStartup
+    config:
+      host: !!js ctx.webStartup.host ?? '127.0.0.1'
+      port: !!js ctx.webStartup.port ?? 3080

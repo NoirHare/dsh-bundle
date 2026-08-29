@@ -1,6 +1,6 @@
 {
     "name": "@noirhare/dsh-host-webserver",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "license": "MIT",
     "author": {
         "name": "NoirHare",
@@ -12,7 +12,8 @@
         "directory": "packages/host-webserver"
     },
     "files": [
-        "lib"
+        "lib",
+        "cordis.patch.yml"
     ],
     "publishConfig": {
         "access": "public"
@@ -29,5 +30,10 @@
     "peerDependencies": {
         "@deepseek-ai/schemastery": "^3.18.1",
         "@deepseek-ai/dsh-host-webserver": "^0.1.1-rc.2"
+    },
+    "dsh": {
+        "bundle": {
+            "patch": "./cordis.patch.yml"
+        }
     }
 }

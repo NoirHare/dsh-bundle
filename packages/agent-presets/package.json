@@ -1,6 +1,6 @@
 {
     "name": "@noirhare/dsh-agent-presets",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "license": "MIT",
     "author": {
         "name": "NoirHare",
@@ -12,7 +12,8 @@
         "directory": "packages/agent-presets"
     },
     "files": [
-        "lib"
+        "lib",
+        "cordis.patch.yml"
     ],
     "publishConfig": {
         "access": "public"
@@ -29,5 +30,10 @@
     },
     "peerDependencies": {
         "@deepseek-ai/dsh-agent-presets": "^0.1.1-rc.2"
+    },
+    "dsh": {
+        "bundle": {
+            "patch": "./cordis.patch.yml"
+        }
     }
 }
