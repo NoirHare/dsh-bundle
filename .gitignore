@@ -6,7 +6,7 @@
 
 # node_modules
 /node_modules
-/dsh-bundle/node_modules
+/bundle/node_modules
 /dsh-client-plugin/node_modules
 /packages/*/node_modules
 

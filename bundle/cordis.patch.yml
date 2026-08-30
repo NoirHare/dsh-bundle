@@ -26,3 +26,4 @@
 
   - name: "@noirhare/dsh-nr-agent-presets"
   - name: "@noirhare/dsh-ui-notification"
+  - name: "@noirhare/dsh-web-search-tavily"

@@ -1,6 +1,6 @@
 {
     "name": "@noirhare/dsh-bundle",
-    "version": "0.0.14",
+    "version": "0.0.15",
     "license": "MIT",
     "author": {
         "name": "NoirHare",
@@ -22,7 +22,8 @@
         "@noirhare/dsh-agent-presets": "workspace:^",
         "@noirhare/dsh-host-webserver": "workspace:^",
         "@noirhare/dsh-nr-agent-presets": "workspace:^",
-        "@noirhare/dsh-ui-notification": "workspace:^"
+        "@noirhare/dsh-ui-notification": "workspace:^",
+        "@noirhare/dsh-web-search-tavily": "workspace:^"
     },
     "dsh": {
         "bundle": {
