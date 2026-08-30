@@ -4,6 +4,12 @@
 - id: "agent-presets"
   disabled: true
 
+- id: web
+  config:
+
+- id: web-search-deepseek
+  disabled: true
+
 - insert:
   - name: "@deepseek-ai/dsh-web-fetch-http"
   

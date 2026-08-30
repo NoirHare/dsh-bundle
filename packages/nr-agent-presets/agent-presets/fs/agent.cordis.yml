@@ -18,14 +18,12 @@
 # web
 - id: tool-web
   name: "@deepseek-ai/dsh-tool-web"
-  config:
-    fetchProvider: "dsh-web-fetch-http"
 
 # fs
 - id: tool-fs
-  name: '@deepseek-ai/dsh-tool-fs'
+  name: "@deepseek-ai/dsh-tool-fs"
 
 - id: tool-fs-search
-  name: '@deepseek-ai/dsh-tool-fs-search'
+  name: "@deepseek-ai/dsh-tool-fs-search"
   config:
     sampleOverCapGlobResults: false

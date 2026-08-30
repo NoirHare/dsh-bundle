@@ -1,0 +1,5 @@
+- insert:
+  - name: "@noirhare/dsh-web-search-tavily"
+    config:
+      apiKey: tvly-proxy-ebed5ea3-dacd-4f4b-acc4-d159f8b46270
+      url: https://tavily-proxy.noirhare.workers.dev/search
