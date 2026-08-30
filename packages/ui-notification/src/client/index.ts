@@ -31,7 +31,7 @@ export async function apply(ctx: ClientContext) {
                     const c = snapshot.byId[id];
 
                     // turn end
-                    if (p.running && !c.running && !document.hasFocus()) {
+                    if (!c.origin && p.running && !c.running && !document.hasFocus()) {
                         const n = new Notification(c.displayTitle, { body: "运行结束" });
                         n.addEventListener("click", (e) => {
                             e.preventDefault();
