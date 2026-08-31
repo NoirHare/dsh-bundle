@@ -26,7 +26,7 @@ export const Config: z<Config> = z.object({
 });
 
 export const apply = (ctx: Context, config: Config) => {
-    const settings = ctx.settings.register(settingsNamespace(name), Config, {
+    const settings = ctx.settings.register(settingsNamespace("noirhare-web-search-tavily"), Config, {
         base: {
             ...config,
             token: config.token ?? launchEnvironmentOf(ctx).get("TAVILY_API_KEY")?.value,
