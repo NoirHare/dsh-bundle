@@ -1,37 +1,37 @@
 import z from "@deepseek-ai/schemastery";
-
 import { Context } from "@deepseek-ai/cordis";
-import { TAVILY_DEFAULT_URL, TavilySearchProvider } from "./provider";
 import { launchEnvironmentOf } from "@deepseek-ai/dsh-launch-environment";
+import { settingsNamespace } from "@deepseek-ai/dsh-settings";
 
-export const name = "web-search-tavily";
-export const inject = ["web"];
-export interface Config {
-    apiKey?: string
-    url?: string
+import { TAILY_DEFAULT_URL, TailyWebSearchProvider } from "./provider";
+
+export type Config = {
+    url: string
+    token?: string
+    keyless: boolean
 
     searchDepth?: "basic" | "advanced" | "fast" | "ultra-fast"
     chunksPerSource?: number
-    maxResults?: number
-}
+};
 
+export const name = "@noirhare/web-search-tavily";
+export const inject = ["settings", "web"];
 export const Config: z<Config> = z.object({
-    apiKey: z.string(),
-    url: z.string(),
+    url: z.string().default(TAILY_DEFAULT_URL),
+    token: z.string().min(2),
+    keyless: z.boolean().default(false),
 
     searchDepth: z.union(["basic", "advanced", "fast", "ultra-fast"] as const),
-    chunksPerSource: z.number(),
-    maxResults: z.number(),
+    chunksPerSource: z.number().min(1).max(3),
 });
 
-export function apply(ctx: Context, config: Config): void {
-    ctx.web.registerSearchProvider(
-        new TavilySearchProvider({
-            apiKey: config.apiKey ?? launchEnvironmentOf(ctx).get("TAVILY_API_KEY")?.value ?? "",
-            url: config.url ?? TAVILY_DEFAULT_URL,
-            searchDepth: config.searchDepth,
-            chunksPerSource: config.chunksPerSource,
-            maxResults: config.maxResults,
-        }),
-    );
-}
+export const apply = (ctx: Context, config: Config) => {
+    const settings = ctx.settings.register(settingsNamespace(name), Config, {
+        base: {
+            ...config,
+            token: config.token ?? launchEnvironmentOf(ctx).get("TAVILY_API_KEY")?.value,
+        },
+    });
+
+    ctx.web.registerSearchProvider(new TailyWebSearchProvider(settings));
+};

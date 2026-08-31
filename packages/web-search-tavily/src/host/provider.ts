@@ -1,55 +1,63 @@
 import { WebError, WebSearchProvider, WebSearchRequest, WebSearchResult } from "@deepseek-ai/dsh-web";
-import type { TavilyError, TavilySearchResponse } from "./types";
+import { Config, name } from ".";
+import { SettingsScope } from "@deepseek-ai/dsh-settings";
 
-export const TAVILY_PROVIDER_ID = "tavily";
+type TailySearchResponse = {
+    answer: string
+    results: {
+        title: string
+        url: string
+        content: string
+    }[]
+};
 
-export const TAVILY_DEFAULT_URL = "https://api.tavily.com/search";
+export const TAILY_DEFAULT_URL = "https://api.tavily.com/search";
 
-const USER_AGENT = "deepseek-harness/0.0.1";
+const isAbortError = (error: unknown) => {
+    return error instanceof DOMException && error.name === "AbortError";
+};
 
-export interface TavilySearchProviderOptions {
-    apiKey: string
-    url: string
-    searchDepth?: "basic" | "advanced" | "fast" | "ultra-fast"
-    chunksPerSource?: number
-    maxResults?: number
-}
+export class TailyWebSearchProvider implements WebSearchProvider {
+    readonly id = name;
 
-export class TavilySearchProvider implements WebSearchProvider {
-    readonly id = TAVILY_PROVIDER_ID;
-
-    constructor(private readonly options: TavilySearchProviderOptions) {}
+    constructor(readonly settings: SettingsScope<Config>) { }
 
     available(): boolean {
-        return this.options.apiKey.length > 0 && URL.canParse(this.options.url);
+        const config = this.settings.get();
+
+        if (!config.token) return false;
+        if (config.token.trim().length === 0) return false;
+
+        return true;
     }
 
     async search(request: WebSearchRequest, signal?: AbortSignal): Promise<WebSearchResult> {
-        const maxResults = request.maxResults ?? this.options.maxResults;
+        const config = this.settings.get();
+
         let response: Response;
         try {
-            response = await fetch(this.options.url, {
+            response = await fetch(config.url, {
                 method: "POST",
-                redirect: "error",
+                redirect: "follow",
                 headers: {
-                    "authorization": `Bearer ${this.options.apiKey}`,
+                    ...(!config.keyless
+                        ? { authorization: `Bearer ${config.token}` }
+                        : { "X-Tavily-Access-Mode": "keyless" }),
                     "content-type": "application/json",
                     "accept": "application/json",
-                    "user-agent": USER_AGENT,
+                    "user-agent": "deepseek-harness/0.0.1",
                 },
                 body: JSON.stringify({
                     query: request.query,
-                    search_depth: this.options.searchDepth,
-                    chunks_per_source: this.options.chunksPerSource,
-                    max_results: maxResults,
+                    search_depth: config.searchDepth,
+                    chunks_per_source: config.chunksPerSource,
+                    max_results: request.maxResults,
                     include_answer: true,
                 }),
                 ...signal !== undefined ? { signal } : {},
             });
         } catch (error: unknown) {
-            if (error instanceof DOMException && error.name === "AbortError") {
-                throw new WebError("Tavily search aborted", "WEB_ABORTED", { cause: error });
-            }
+            if (isAbortError(error)) throw new WebError("Tavily search aborted", "WEB_ABORTED", { cause: error });
             throw new WebError(`Tavily search request failed: ${String(error)}`, "WEB_PROVIDER_ERROR", { cause: error });
         }
 
@@ -57,18 +65,16 @@ export class TavilySearchProvider implements WebSearchProvider {
             const status = response.status;
             let message = `Tavily API error (HTTP ${status})`;
             try {
-                const error = (await response.json() as TavilyError).detail?.error;
+                const error = (await response.json() as { detail?: { error?: string } })?.detail?.error;
                 if (error !== undefined && error.length > 0) message = error;
             } catch (error: unknown) {
-                if (error instanceof DOMException && error.name === "AbortError") {
-                    throw new WebError("Tavily search aborted", "WEB_ABORTED", { cause: error });
-                }
+                if (isAbortError(error)) throw new WebError("Exa search aborted", "WEB_ABORTED", { cause: error });
             }
             throw new WebError(message, "WEB_PROVIDER_ERROR");
         }
 
         try {
-            const payload = await response.json() as TavilySearchResponse;
+            const payload = await response.json() as TailySearchResponse;
             return {
                 content: payload.answer,
                 sources: payload.results.map((r) => ({
@@ -79,10 +85,8 @@ export class TavilySearchProvider implements WebSearchProvider {
                 truncated: true,
             };
         } catch (error: unknown) {
-            if (error instanceof DOMException && error.name === "AbortError") {
-                throw new WebError("Tavily search aborted", "WEB_ABORTED", { cause: error });
-            }
-            throw new WebError(`Tavily returned an unprocessable response body: ${String(error)}`, "WEB_PROVIDER_ERROR", { cause: error });
+            if (isAbortError(error)) throw new WebError("Taily search aborted", "WEB_ABORTED", { cause: error });
+            throw new WebError(`Taily returned an unprocessable response body: ${String(error)}`, "WEB_PROVIDER_ERROR", { cause: error });
         }
     }
 }

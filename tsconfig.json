@@ -1,4 +1,9 @@
 {
-    "extends": "./tsconfig.host.base.json",
+    "compilerOptions": {
+        "target": "es2024",
+        "lib": ["ES2024"],
+        "types": ["node"],
+        "skipLibCheck": true
+    },
     "include": ["eslint.config.ts"]
 }
