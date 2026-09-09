@@ -2,9 +2,13 @@
     "private": true,
     "type": "module",
     "devEngines": {
+        "runtime": {
+            "name": "node",
+            "version": "24"
+        },
         "packageManager": {
             "name": "pnpm",
-            "version": "11.23.0",
+            "version": "12",
             "onFail": "download"
         }
     },
@@ -17,11 +21,7 @@
         "@types/react": "^19.2.18",
         "esbuild": "^0.28.2",
         "esbuild-plugin-d.ts": "^2.0.1",
-        "eslint": "^10.9.1",
-        "eslint-plugin-react": "^7.37.5",
-        "globals": "^17.11.0",
-        "jiti": "^2.7.0",
-        "typescript-eslint": "^8.68.0"
+        "typescript": "^7.0.2"
     },
     "peerDependencies": {
         "react": "^19.2.8"

@@ -1,17 +1,16 @@
 import z from "@deepseek-ai/schemastery";
 import { Context } from "@deepseek-ai/cordis";
 import { launchEnvironmentOf } from "@deepseek-ai/dsh-launch-environment";
-import { settingsNamespace } from "@deepseek-ai/dsh-settings";
 
 import { TAILY_DEFAULT_URL, TailyWebSearchProvider } from "./provider";
 
 export type Config = {
-    url: string
-    token?: string
-    keyless: boolean
+    url: string;
+    token?: string;
+    keyless: boolean;
 
-    searchDepth?: "basic" | "advanced" | "fast" | "ultra-fast"
-    chunksPerSource?: number
+    searchDepth?: "basic" | "advanced" | "fast" | "ultra-fast";
+    chunksPerSource?: number;
 };
 
 export const name = "@noirhare/web-search-tavily";
@@ -26,7 +25,7 @@ export const Config: z<Config> = z.object({
 });
 
 export const apply = (ctx: Context, config: Config) => {
-    const settings = ctx.settings.register(settingsNamespace("noirhare-web-search-tavily"), Config, {
+    const settings = ctx.settings.register("noirhare-web-search-tavily", Config, {
         base: {
             ...config,
             token: config.token ?? launchEnvironmentOf(ctx).get("TAVILY_API_KEY")?.value,

@@ -1,5 +1,4 @@
 import React, { MouseEvent, useMemo, useState } from "react";
-import type {} from "@deepseek-ai/dsh-client-ui-sidebar/client";
 import { Button } from "@deepseek-ai/dsh-client-ui-primitives";
 
 export function SidebarNotify() {
@@ -10,7 +9,15 @@ export function SidebarNotify() {
         Notification.requestPermission((permission) => setPermission(permission));
     }
 
-    return useMemo(() => permission === "default" ? <Button variant="toolbar" onClick={buttonClick}>启动通知</Button> : null, [permission]);
+    return useMemo(
+        () =>
+            permission === "default" ? (
+                <Button variant="toolbar" onClick={buttonClick}>
+                    启动通知
+                </Button>
+            ) : null,
+        [permission],
+    );
 }
 
 export default SidebarNotify;

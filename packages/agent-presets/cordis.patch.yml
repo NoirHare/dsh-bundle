@@ -2,7 +2,7 @@
   disabled: true
 
 - insert:
-  - id: "nr-agent-presets"
+  - id: "@noirhare/dsh-agent-presets"
     name: "@noirhare/dsh-agent-presets"
     config:
       default: standard

@@ -1,4 +1,9 @@
-import type { ClientContext } from "@deepseek-ai/dsh-client-runtime/client";
+import type { Context } from "@deepseek-ai/cordis";
+
+import type {} from "@deepseek-ai/dsh-client-ui-renderer/client";
+import type {} from "@deepseek-ai/dsh-client-ui-sidebar/client";
+
+import type {} from "@deepseek-ai/dsh-api-session-controller/client";
 
 import SidebarNotify from "./SidebarNotify";
 
@@ -6,7 +11,7 @@ const ID = "@noirhare/dsh-ui-notification";
 
 export const inject = ["slots", "sessions"];
 
-export async function apply(ctx: ClientContext) {
+export async function apply(ctx: Context) {
     if (Notification.permission === "default") {
         ctx.slots.inject(
             "sidebar.footer.action",

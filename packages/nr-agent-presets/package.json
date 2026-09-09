@@ -1,6 +1,6 @@
 {
     "name": "@noirhare/dsh-nr-agent-presets",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "license": "MIT",
     "author": {
         "name": "NoirHare",
@@ -25,11 +25,11 @@
         "./package.json": "./package.json"
     },
     "scripts": {
-        "build": "tsc -b && node build.ts",
+        "build": "pnpm exec tsc -b && node build.ts",
         "prepublish": "pnpm build"
     },
     "peerDependencies": {
-        "@deepseek-ai/cordis": "^4.0.1",
+        "@deepseek-ai/cordis": "catalog:",
         "@noirhare/dsh-agent-presets": "workspace:^"
     },
     "dsh": {
