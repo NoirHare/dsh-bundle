@@ -1,9 +1,7 @@
 - id: persona
   name: "@deepseek-ai/dsh-persona"
   config:
-    suffix: Your working directory is {{cwd}}.
-    prefix: >-
-      You are a coding agent.
+    prefix: Your working directory is {{cwd}}.
 
 - id: tool-todo
   name: "@deepseek-ai/dsh-tool-todo"
