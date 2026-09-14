@@ -1,6 +1,6 @@
 {
     "name": "@noirhare/dsh-ui-notification",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "license": "MIT",
     "author": {
         "name": "NoirHare",
@@ -28,10 +28,14 @@
         "build": "pnpm exec tsc -b && node build.ts",
         "prepublish": "pnpm build"
     },
+    "dependencies": {
+        "itiriri": "^2.0.1"
+    },
     "peerDependencies": {
         "@deepseek-ai/cordis": "catalog:",
         "@deepseek-ai/dsh-client-ui-renderer": "catalog:",
         "@deepseek-ai/dsh-api-session-controller": "catalog:",
+        "@deepseek-ai/dsh-client-ui-session": "catalog:",
         "@deepseek-ai/dsh-client-ui-primitives": "catalog:",
         "@deepseek-ai/dsh-client-ui-slots": "catalog:",
         "@deepseek-ai/dsh-client-ui-sidebar": "catalog:"
