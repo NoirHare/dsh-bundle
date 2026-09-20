@@ -1,0 +1,11 @@
+- id: agent-presets
+  inject:
+    - agentPresetsRoots
+  config:
+    default: chat
+    roots: !!js ctx.agentPresetsRoots
+    includeShippedRoot: false
+
+- insert:
+    - id: "@noirhare/dsh-agent-presets-roots"
+      name: "@noirhare/dsh-agent-presets-roots"

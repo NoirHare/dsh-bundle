@@ -1,0 +1,17 @@
+{
+    "private": true,
+    "name": "client-build-script",
+    "version": "0.0.1",
+    "type": "module",
+    "bin": {
+        "client-build": "lib/index.js"
+    },
+    "scripts": {
+        "build": "esbuild src/index.ts --bundle --platform=node --format=esm --outbase=src --outdir=lib --packages=external --sourcemap=inline",
+        "postinstall": "pnpm run build"
+    },
+    "dependencies": {
+        "esbuild": "catalog:",
+        "lightningcss": "^1.33.0"
+    }
+}

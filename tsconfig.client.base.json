@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "lib": ["ES2024", "DOM"],
+        "types": ["css-module"],
+
+        "jsx": "react-jsx",
+
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "declarationDir": "${configDir}/lib/types",
+        "rootDir": "${configDir}/src",
+        "skipLibCheck": true
+    },
+    "include": ["${configDir}/src/index.ts"]
+}

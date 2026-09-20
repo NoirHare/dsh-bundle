@@ -1,0 +1,40 @@
+{
+    "name": "@noirhare/dsh-host-webserver",
+    "version": "0.1.1",
+    "license": "MIT",
+    "author": "NoirHare",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NoirHare/dsh-bundle",
+        "directory": "plugin/host-webserver"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "exports": {
+        ".": {
+            "types": "./lib/types/index.d.ts",
+            "default": "./lib/host.js"
+        }
+    },
+    "files": [
+        "lib",
+        "cordis.patch.yml"
+    ],
+    "type": "module",
+    "scripts": {
+        "build": "pnpm exec tsc && pnpm exec host-build"
+    },
+    "devDependencies": {
+        "host-build-script": "workspace:^"
+    },
+    "peerDependencies": {
+        "@deepseek-ai/schemastery": "catalog:",
+        "@deepseek-ai/dsh-host-webserver": "catalog:"
+    },
+    "dsh": {
+        "bundle": {
+            "patch": "./cordis.patch.yml"
+        }
+    }
+}

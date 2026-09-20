@@ -1,0 +1,16 @@
+{
+    "private": true,
+    "name": "host-build-script",
+    "version": "0.0.1",
+    "type": "module",
+    "bin": {
+        "host-build": "lib/index.js"
+    },
+    "scripts": {
+        "build": "esbuild src/index.ts --bundle --platform=node --format=esm --outbase=src --outdir=lib --packages=external --sourcemap=inline",
+        "postinstall": "pnpm run build"
+    },
+    "dependencies": {
+        "esbuild": "catalog:"
+    }
+}

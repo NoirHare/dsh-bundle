@@ -1,0 +1,91 @@
+# Disable open in app
+- id: open-in-app
+  disabled: true
+- id: ui-open-in-app
+  disabled: true
+
+# Disable DeepSeek
+- id: llm-deepseek
+  disabled: true
+- id: web-search-deepseek
+  disabled: true
+
+# Disable
+- id: approval
+  config:
+    policy: never
+- id: permission
+  config:
+    presets:
+      read-only:
+        sandbox: read-only
+        approval: never
+      workspace-write:
+        sandbox: workspace-write
+        approval: never
+      danger-full-access:
+        sandbox: danger-full-access
+        approval: never
+
+# Configure web
+- id: web
+  config:
+
+# Enable compaction
+- id: compaction-basic
+  disabled: false
+- id: command-compact
+  disabled: false
+
+# Enable goals
+- id: command-goal
+  disabled: false
+- id: tool-goal
+  disabled: false
+
+# Enable todo
+- id: tool-todo
+  disabled: false
+
+# Enable ask
+- id: tool-ask-user
+  disabled: false
+
+# Enable web
+- id: tool-web
+  disabled: false
+
+# persona
+- id: persona
+  name: "@deepseek-ai/dsh-persona"
+  config:
+    prefix: Your working directory is {{cwd}}.
+
+# @noirhare/dsh-agent-presets-roots
+- id: agent-presets
+  inject:
+    - agentPresetsRoots
+  config:
+    default: chat
+    roots: !!js ctx.agentPresetsRoots
+    includeShippedRoot: false
+# @noirhare/dsh-host-webserver
+- id: webserver
+  disabled: true
+
+- insert:
+    # @noirhare/dsh-agent-presets-roots
+    - id: "@noirhare/dsh-agent-presets-roots"
+      name: "@noirhare/dsh-agent-presets-roots"
+    # @noirhare/dsh-host-webserver
+    - id: "@noirhare/dsh-host-webserver"
+      name: "@noirhare/dsh-host-webserver"
+      config:
+        host: !!js ctx.webStartup.host ?? '127.0.0.1'
+        port: !!js ctx.webStartup.port ?? 3080
+    # @noirhare/dsh-ui-notification
+    - id: "@noirhare/dsh-ui-notification"
+      name: "@noirhare/dsh-ui-notification"
+    # @noirhare/dsh-web-search-tavily
+    - id: "@noirhare/dsh-web-search-tavily"
+      name: "@noirhare/dsh-web-search-tavily"

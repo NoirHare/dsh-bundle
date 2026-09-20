@@ -1,0 +1,41 @@
+{
+    "name": "@noirhare/dsh-agent-presets-roots",
+    "version": "0.1.5",
+    "license": "MIT",
+    "author": "NoirHare",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NoirHare/dsh-bundle",
+        "directory": "plugin/agent-presetss-roots"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "exports": {
+        ".": {
+            "types": "./lib/types/index.d.ts",
+            "default": "./lib/host.js"
+        }
+    },
+    "files": [
+        "lib",
+        "agent-presets",
+        "cordis.patch.yml"
+    ],
+    "type": "module",
+    "scripts": {
+        "build": "pnpm exec tsc && pnpm exec host-build"
+    },
+    "devDependencies": {
+        "host-build-script": "workspace:^"
+    },
+    "peerDependencies": {
+        "@deepseek-ai/cordis": "catalog:",
+        "@deepseek-ai/dsh-agent-presets": "catalog:"
+    },
+    "dsh": {
+        "bundle": {
+            "patch": "./cordis.patch.yml"
+        }
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "extends": "../../tsconfig.client.base.json",
+    "compilerOptions": {
+        "types": []
+    },
+    "include": ["*.d.ts"]
+}

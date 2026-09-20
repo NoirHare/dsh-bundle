@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "lib": ["ES2024"],
+        "types": ["node"],
+
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "declarationDir": "${configDir}/lib/types",
+        "rootDir": "${configDir}/src",
+        "skipLibCheck": true
+    },
+    "include": ["${configDir}/src/index.ts"]
+}

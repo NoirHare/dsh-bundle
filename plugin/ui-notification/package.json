@@ -1,0 +1,54 @@
+{
+    "name": "@noirhare/dsh-ui-notification",
+    "version": "0.1.1",
+    "license": "MIT",
+    "author": "NoirHare",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NoirHare/dsh-bundle",
+        "directory": "plugin/ui-notification"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "exports": {
+        ".": "./lib/host.js",
+        "./client": {
+            "types": "./lib/types/index.d.ts",
+            "default": "./lib/client.js"
+        }
+    },
+    "files": [
+        "lib",
+        "cordis.patch.yml"
+    ],
+    "type": "module",
+    "scripts": {
+        "build": "pnpm exec tsc && pnpm exec client-build"
+    },
+    "devDependencies": {
+        "client-build-script": "workspace:^",
+        "@types/react": "catalog:"
+    },
+    "peerDependencies": {
+        "react": "catalog:",
+        "@deepseek-ai/cordis": "catalog:",
+        "@deepseek-ai/dsh-api-remotes": "catalog:",
+        "@deepseek-ai/dsh-api-session-controller": "catalog:",
+        "@deepseek-ai/dsh-client-ui-renderer": "catalog:",
+        "@deepseek-ai/dsh-client-ui-slots": "catalog:",
+        "@deepseek-ai/dsh-client-ui-settings": "catalog:",
+        "@deepseek-ai/dsh-client-locale": "catalog:",
+        "@deepseek-ai/dsh-client-ui-workspace": "catalog:",
+        "@deepseek-ai/dsh-client-ui-session": "catalog:",
+        "@deepseek-ai/dsh-client-ui-primitives": "catalog:"
+    },
+    "dsh": {
+        "bundle": {
+            "patch": "./cordis.patch.yml"
+        },
+        "client": {
+            "platform": "web"
+        }
+    }
+}

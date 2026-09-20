@@ -1,0 +1,11 @@
+# VSCode
+/.vscode
+
+# node_modules
+/node_modules
+/bundle/node_modules
+/plugin/*/node_modules
+/script/*/node_modules
+
+/plugin/*/lib
+/script/*/lib

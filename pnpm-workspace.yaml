@@ -1,0 +1,41 @@
+packages:
+- types/*
+- script/*
+- plugin/*
+- bundle
+
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+
+catalogMode: strict
+catalog:
+  esbuild: ^0.28.2
+
+  "@types/react": ^18.2.0
+  "react": ^18.2.0
+
+  "@deepseek-ai/cordis": ^4.0.2
+  "@deepseek-ai/schemastery": ^3.18.2
+  "@deepseek-ai/dsh-api-remotes": ^0.1.5-rc.2
+  "@deepseek-ai/dsh-api-session-controller": ^0.1.5-rc.2
+  "@deepseek-ai/dsh-client-ui-renderer": ^0.1.5-rc.2
+  "@deepseek-ai/dsh-client-locale": ^0.1.5-rc.2
+  "@deepseek-ai/dsh-client-ui-slots": ^0.1.5-rc.2
+  "@deepseek-ai/dsh-client-ui-workspace": ^0.1.5-rc.2
+  "@deepseek-ai/dsh-client-ui-session": ^0.1.5-rc.2
+  "@deepseek-ai/dsh-client-ui-settings": ^0.1.5-rc.2
+  "@deepseek-ai/dsh-client-ui-primitives": ^0.1.5-rc.2
+  "@deepseek-ai/dsh-agent-presets": ^0.1.5-rc.2
+  "@deepseek-ai/dsh-host-webserver": ^0.1.5-rc.2
+  "@deepseek-ai/dsh-settings": ^0.1.5-rc.2
+  "@deepseek-ai/dsh-launch-environment": ^0.1.5-rc.2
+  "@deepseek-ai/dsh-web": ^0.1.5-rc.2
+
+packageExtensions:
+  '@deepseek-ai/dsh-api-remotes':
+    peerDependencies:
+      '@deepseek-ai/dsh-api-gateway': ^0.1.5-rc.2
+  '@deepseek-ai/dsh-api-session-controller':
+    peerDependencies:
+      '@deepseek-ai/dsh-client-store': ^0.1.5-rc.2

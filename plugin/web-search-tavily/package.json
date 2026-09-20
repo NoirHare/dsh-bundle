@@ -1,0 +1,43 @@
+{
+    "name": "@noirhare/dsh-web-search-tavily",
+    "version": "0.1.1",
+    "license": "MIT",
+    "author": "NoirHare",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NoirHare/dsh-bundle",
+        "directory": "plugin/web-search-tavily"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "exports": {
+        ".": {
+            "types": "./lib/types/index.d.ts",
+            "default": "./lib/host.js"
+        }
+    },
+    "files": [
+        "lib",
+        "cordis.patch.yml"
+    ],
+    "type": "module",
+    "scripts": {
+        "build": "pnpm exec tsc && pnpm exec host-build"
+    },
+    "devDependencies": {
+        "host-build-script": "workspace:^"
+    },
+    "peerDependencies": {
+        "@deepseek-ai/cordis": "catalog:",
+        "@deepseek-ai/schemastery": "catalog:",
+        "@deepseek-ai/dsh-settings": "catalog:",
+        "@deepseek-ai/dsh-launch-environment": "catalog:",
+        "@deepseek-ai/dsh-web": "catalog:"
+    },
+    "dsh": {
+        "bundle": {
+            "patch": "./cordis.patch.yml"
+        }
+    }
+}

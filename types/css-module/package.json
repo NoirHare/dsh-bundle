@@ -1,0 +1,5 @@
+{
+    "private": true,
+    "name": "@types/css-module",
+    "types": "src/index.d.ts"
+}
