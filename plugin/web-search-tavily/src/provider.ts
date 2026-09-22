@@ -101,7 +101,7 @@ export class TavilyWebSearchProvider implements WebSearchProvider {
                 const error = ((await response.json()) as { detail?: { error?: string } })?.detail?.error;
                 if (error !== undefined && error.length > 0) message = error;
             } catch (error: unknown) {
-                if (isAbortError(error)) throw new WebError("Exa search aborted", "WEB_ABORTED", { cause: error });
+                if (isAbortError(error)) throw new WebError("Tavily search aborted", "WEB_ABORTED", { cause: error });
             }
             throw new WebError(message, "WEB_PROVIDER_ERROR");
         }
