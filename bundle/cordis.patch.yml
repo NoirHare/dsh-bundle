@@ -55,13 +55,6 @@
 - id: tool-web
   disabled: false
 
-# persona
-- id: persona
-  name: "@deepseek-ai/dsh-persona"
-  config:
-    prefix: Your working directory is {{cwd}}.
-    suffix: All interactions with users are conducted in Chinese.
-
 # @noirhare/dsh-agent-presets-roots
 - id: agent-presets
   inject:
@@ -75,6 +68,13 @@
   disabled: true
 
 - insert:
+    # persona
+    - id: persona
+      name: "@deepseek-ai/dsh-persona"
+      config:
+        prefix: Your working directory is {{cwd}}.
+        suffix: All interactions with users are conducted in Chinese.
+        includeRuntimeContext: false
     # @noirhare/dsh-agent-presets-roots
     - id: "@noirhare/dsh-agent-presets-roots"
       name: "@noirhare/dsh-agent-presets-roots"
