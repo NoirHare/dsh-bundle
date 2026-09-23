@@ -55,6 +55,15 @@
 - id: tool-web
   disabled: false
 
+# prompt
+- id: system-prompt
+  name: '@deepseek-ai/dsh-system-prompt'
+  config:
+    personaPrefix: Your working directory is {{cwd}}.
+    personaSuffix: All interactions with users are conducted in Chinese.
+    includeHarnessIdentity: false
+    includeRuntimeContext: false
+
 # @noirhare/dsh-agent-presets-roots
 - id: agent-presets
   inject:
@@ -68,13 +77,6 @@
   disabled: true
 
 - insert:
-    # persona
-    - id: persona
-      name: "@deepseek-ai/dsh-persona"
-      config:
-        prefix: Your working directory is {{cwd}}.
-        suffix: All interactions with users are conducted in Chinese.
-        includeRuntimeContext: false
     # @noirhare/dsh-agent-presets-roots
     - id: "@noirhare/dsh-agent-presets-roots"
       name: "@noirhare/dsh-agent-presets-roots"
