@@ -49,7 +49,7 @@
 
 # Enable ask
 - id: tool-ask-user
-  disabled: false
+  name: "@deepseek-ai/dsh-tool-ask-user"
 
 # Enable web
 - id: tool-web
@@ -57,12 +57,19 @@
 
 # prompt
 - id: system-prompt
-  name: '@deepseek-ai/dsh-system-prompt'
+  name: "@deepseek-ai/dsh-system-prompt"
   config:
     personaPrefix: Your working directory is {{cwd}}.
     personaSuffix: All interactions with users are conducted in Chinese.
     includeHarnessIdentity: false
-    includeRuntimeContext: false
+- id: web-runtime
+  inject:
+    - webStartup
+  config:
+    openBrowser: !!js ctx.webStartup.openBrowser
+    printUrl: true
+    surfaceContext: false
+    trustedHosts: !!js ctx.webStartup.trustedHosts
 
 # @noirhare/dsh-agent-presets-roots
 - id: agent-presets
