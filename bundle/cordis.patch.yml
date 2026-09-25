@@ -47,10 +47,6 @@
 - id: tool-todo
   disabled: false
 
-# Enable ask
-- id: tool-ask-user
-  name: "@deepseek-ai/dsh-tool-ask-user"
-
 # Enable web
 - id: tool-web
   disabled: false
@@ -84,6 +80,9 @@
   disabled: true
 
 - insert:
+    # Enable ask
+    - id: tool-ask-user
+      name: "@deepseek-ai/dsh-tool-ask-user"
     # @noirhare/dsh-agent-presets-roots
     - id: "@noirhare/dsh-agent-presets-roots"
       name: "@noirhare/dsh-agent-presets-roots"
