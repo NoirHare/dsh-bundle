@@ -1,0 +1,26 @@
+{
+    "name": "@noirhare/dsh-client-ui-directory-picker-browse",
+    "version": "0.1.1",
+    "license": "MIT",
+    "author": "NoirHare",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NoirHare/dsh-bundle",
+        "directory": "plugin/client-ui-directory-picker-browse"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "cordis.patch.yml"
+    ],
+    "dependencies": {
+        "@noirhare/dsh-directory-picker-browse-host": "workspace:^",
+        "@noirhare/dsh-directory-picker-browse-client": "workspace:^"
+    },
+    "dsh": {
+        "bundle": {
+            "patch": "./cordis.patch.yml"
+        }
+    }
+}

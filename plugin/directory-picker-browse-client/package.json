@@ -1,0 +1,50 @@
+{
+    "name": "@noirhare/dsh-directory-picker-browse-client",
+    "version": "0.1.0",
+    "license": "MIT",
+    "author": "NoirHare",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NoirHare/dsh-bundle",
+        "directory": "plugin/directory-picker-browse-client"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "exports": {
+        ".": "./lib/host.js",
+        "./client": {
+            "types": "./lib/types/index.d.ts",
+            "default": "./lib/client.js"
+        }
+    },
+    "files": [
+        "lib"
+    ],
+    "type": "module",
+    "scripts": {
+        "build": "pnpm exec tsc && pnpm exec client-build"
+    },
+    "dependencies": {
+        "clsx": "^2.1.1"
+    },
+    "devDependencies": {
+        "@types/react": "catalog:",
+        "client-build-script": "workspace:^"
+    },
+    "peerDependencies": {
+        "@deepseek-ai/cordis": "catalog:",
+        "@deepseek-ai/dsh-api-remotes": "catalog:",
+        "@deepseek-ai/dsh-client-locale": "catalog:",
+        "@deepseek-ai/dsh-client-ui-primitives": "catalog:",
+        "@deepseek-ai/dsh-client-ui-renderer": "catalog:",
+        "@deepseek-ai/dsh-client-ui-slots": "catalog:",
+        "@deepseek-ai/dsh-client-ui-workspace": "catalog:",
+        "react": "catalog:"
+    },
+    "dsh": {
+        "client": {
+            "platform": "web"
+        }
+    }
+}

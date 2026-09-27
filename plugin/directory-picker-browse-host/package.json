@@ -1,0 +1,40 @@
+{
+    "name": "@noirhare/dsh-directory-picker-browse-host",
+    "version": "0.1.0",
+    "license": "MIT",
+    "author": "NoirHare",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NoirHare/dsh-bundle",
+        "directory": "plugin/directory-picker-browse-host"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "exports": {
+        ".": {
+            "types": "./lib/types/index.d.ts",
+            "default": "./lib/host.js"
+        }
+    },
+    "files": [
+        "lib"
+    ],
+    "type": "module",
+    "scripts": {
+        "build": "pnpm exec tsc && pnpm exec host-build"
+    },
+    "dependencies": {
+        "koffi": "^3.3.1"
+    },
+    "devDependencies": {
+        "host-build-script": "workspace:^"
+    },
+    "peerDependencies": {
+        "@deepseek-ai/cordis": "catalog:",
+        "@deepseek-ai/schemastery": "catalog:",
+        "@deepseek-ai/dsh-settings": "catalog:",
+        "@deepseek-ai/dsh-host-directory-picker": "catalog:",
+        "@deepseek-ai/dsh-host-directory-picker-browse": "catalog:"
+    }
+}

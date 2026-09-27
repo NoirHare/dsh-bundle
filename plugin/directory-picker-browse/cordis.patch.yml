@@ -1,0 +1,8 @@
+- id: directory-picker
+  disabled: true
+
+- insert:
+    - id: "@noirhare/dsh-directory-picker-browse-host"
+      name: "@noirhare/dsh-directory-picker-browse-host"
+    - id: "@noirhare/dsh-directory-picker-browse-client"
+      name: "@noirhare/dsh-directory-picker-browse-client"

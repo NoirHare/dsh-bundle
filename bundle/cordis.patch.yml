@@ -75,6 +75,9 @@
     default: chat
     roots: !!js ctx.agentPresetsRoots
     includeShippedRoot: false
+# @noirhare/dsh-client-ui-directory-picker-browse
+- id: directory-picker
+  disabled: true
 # @noirhare/dsh-host-webserver
 - id: webserver
   disabled: true
@@ -86,6 +89,11 @@
     # @noirhare/dsh-agent-presets-roots
     - id: "@noirhare/dsh-agent-presets-roots"
       name: "@noirhare/dsh-agent-presets-roots"
+    # @noirhare/dsh-client-ui-directory-picker-browse
+    - id: "@noirhare/dsh-directory-picker-browse-host"
+      name: "@noirhare/dsh-directory-picker-browse-host"
+    - id: "@noirhare/dsh-directory-picker-browse-client"
+      name: "@noirhare/dsh-directory-picker-browse-client"
     # @noirhare/dsh-host-webserver
     - id: "@noirhare/dsh-host-webserver"
       name: "@noirhare/dsh-host-webserver"

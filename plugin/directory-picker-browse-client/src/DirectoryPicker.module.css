@@ -1,0 +1,72 @@
+.root {
+    padding: 1rem;
+
+    width: 50vw;
+    height: 60vh;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+}
+
+.nav {
+    flex: 0 0;
+
+    display: flex;
+    gap: 0.5rem;
+}
+.nav_home,
+.nav_root {
+    flex: 0 0;
+}
+.nav_crumbs {
+    flex: 1 0;
+
+    white-space: nowrap;
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+.nav_search {
+    flex: 0 0;
+
+    outline: unset;
+    border: unset;
+
+    border-radius: 4px;
+}
+.nav_search.nav_search_error {
+    outline: 2px solid red;
+}
+
+.subdirs {
+    flex: 1 0;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+    align-content: start;
+    gap: 0.5rem;
+
+    overflow-y: scroll;
+}
+.subdirs_dir {
+    white-space: nowrap;
+    overflow-x: clip;
+    text-overflow: ellipsis;
+}
+
+.actions {
+    flex: 0 0;
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.create_input_root {
+    padding: 1rem;
+}
