@@ -1,6 +1,6 @@
 {
     "name": "@noirhare/dsh-bundle",
-    "version": "0.1.13",
+    "version": "0.1.14",
     "license": "MIT",
     "author": "NoirHare",
     "repository": {
@@ -15,9 +15,8 @@
         "cordis.patch.yml"
     ],
     "dependencies": {
-        "@noirhare/dsh-agent-presets-roots": "workspace:^",
         "@noirhare/dsh-host-webserver": "workspace:^",
-        "@noirhare/dsh-ui-notification": "workspace:^",
+        "@noirhare/dsh-notification": "workspace:^",
         "@noirhare/dsh-web-search-tavily": "workspace:^",
         "@noirhare/dsh-directory-picker-browse-client": "workspace:^",
         "@noirhare/dsh-directory-picker-browse-host": "workspace:^"

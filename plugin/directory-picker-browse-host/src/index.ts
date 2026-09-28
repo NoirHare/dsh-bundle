@@ -1,6 +1,5 @@
-import type { Context } from "@deepseek-ai/cordis";
+import type { Context, Volatile } from "@deepseek-ai/cordis";
 import z from "@deepseek-ai/schemastery";
-import type { SettingsScope } from "@deepseek-ai/dsh-settings";
 import type {
     DirectoryEntry,
     DirectoryListing,
@@ -16,10 +15,6 @@ import OS from "node:os";
 import drive from "./drive";
 import abortable from "./abortable";
 
-type Config = {
-    home: string;
-};
-
 const isFullyQualifiedPath = (path: string, platform: NodeJS.Platform = process.platform): boolean => {
     return platform === "win32"
         ? Path.win32.isAbsolute(path) && /^(?:[A-Za-z]:[\\/]|[\\/]{2}[^\\/]+[\\/]+[^\\/]+)/.test(path)
@@ -27,24 +22,21 @@ const isFullyQualifiedPath = (path: string, platform: NodeJS.Platform = process.
 };
 
 export default class BrowseDirectoryPicker extends DirectoryPicker implements DirectoryPickerBrowseCapability {
-    static inject: string[] = ["settings"];
+    static inject: string[] = [];
 
-    static Config: z<Config> = z.object({
-        home: z.string().default(OS.homedir()),
+    static Config = z.object({
+        home: z.string().volatile().default(OS.homedir()),
     });
 
     kind: "browse" = "browse";
 
-    readonly settings: SettingsScope<Config>;
-
-    constructor(ctx: Context, config: Config) {
+    constructor(
+        ctx: Context,
+        readonly config: ReturnType<typeof BrowseDirectoryPicker.Config>,
+    ) {
         super(ctx);
 
-        if (!isFullyQualifiedPath(config.home)) throw new Error("home must be a fully qualified path");
-
-        this.settings = ctx.settings.register("noirhare-dsh-directory-picker-browse-host", BrowseDirectoryPicker.Config, {
-            base: config,
-        });
+        if (!isFullyQualifiedPath(config.home.get())) throw new Error("home must be a fully qualified path");
     }
 
     capability(): DirectoryPickerCapability {
@@ -52,7 +44,8 @@ export default class BrowseDirectoryPicker extends DirectoryPicker implements Di
     }
 
     async list(path?: string, signal?: AbortSignal): Promise<DirectoryListing> {
-        const home = this.settings.get().home;
+        const home = this.config.home.get();
+        if (!isFullyQualifiedPath(home)) throw new Error("home must be a fully qualified path");
 
         if (process.platform === "win32" && (path === undefined || path === "/")) {
             return {

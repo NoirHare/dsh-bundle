@@ -67,6 +67,38 @@
     surfaceContext: false
     trustedHosts: !!js ctx.webStartup.trustedHosts
 
+# presets
+- id: agent-preset-registry
+  config:
+    default: web
+- id: preset-standard
+  disabled: true
+- id: preset-ptc
+  disabled: true
+- id: preset-minimal
+  disabled: true
+- id: preset-cordis
+  disabled: true
+- id: preset-web
+  name: "@deepseek-ai/dsh-agent-preset"
+  config:
+    id: web
+    order: 1
+    plugins: []
+- id: preset-fs
+  name: "@deepseek-ai/dsh-agent-preset"
+  config:
+    id: fs
+    order: 2
+    plugins:
+      # Enabled file system
+      - id: tool-fs
+        name: "@deepseek-ai/dsh-tool-fs"
+      - id: tool-fs-search
+        name: "@deepseek-ai/dsh-tool-fs-search"
+        config:
+          sampleOverCapGlobResults: false
+
 # @noirhare/dsh-agent-presets-roots
 - id: agent-presets
   inject:
@@ -86,9 +118,6 @@
     # Enable ask
     - id: tool-ask-user
       name: "@deepseek-ai/dsh-tool-ask-user"
-    # @noirhare/dsh-agent-presets-roots
-    - id: "@noirhare/dsh-agent-presets-roots"
-      name: "@noirhare/dsh-agent-presets-roots"
     # @noirhare/dsh-client-ui-directory-picker-browse
     - id: "@noirhare/dsh-directory-picker-browse-host"
       name: "@noirhare/dsh-directory-picker-browse-host"
@@ -100,9 +129,9 @@
       config:
         host: !!js ctx.webStartup.host ?? '127.0.0.1'
         port: !!js ctx.webStartup.port ?? 3080
-    # @noirhare/dsh-ui-notification
-    - id: "@noirhare/dsh-ui-notification"
-      name: "@noirhare/dsh-ui-notification"
+    # @noirhare/dsh-notification
+    - id: "@noirhare/dsh-notification"
+      name: "@noirhare/dsh-notification"
     # @noirhare/dsh-web-search-tavily
     - id: "@noirhare/dsh-web-search-tavily"
       name: "@noirhare/dsh-web-search-tavily"

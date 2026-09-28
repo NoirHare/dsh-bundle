@@ -55,35 +55,42 @@ const formatError = (error: unknown) => {
 export class TavilyWebSearchProvider implements WebSearchProvider {
     id: string = name;
 
-    constructor(readonly settings: { get(): Config }) {}
+    constructor(readonly config: ReturnType<typeof Config>) {}
 
     available(): boolean {
-        const config = this.settings.get();
+        const keyless = this.config.keyless.get();
+        if (keyless) return true;
 
-        if (!config.token) return false;
-        if (config.token.trim().length === 0) return false;
+        const token = this.config.token.get();
+        if (!token) return false;
+        if (token.trim().length === 0) return false;
 
         return true;
     }
 
     async search(request: WebSearchRequest, signal?: AbortSignal): Promise<WebSearchResult> {
-        const config = this.settings.get();
+        const url = this.config.url.get();
+        const token = this.config.token.get();
+        const keyless = this.config.keyless.get();
+
+        const searchDepth = this.config.searchDepth.get();
+        const chunksPerSource = this.config.chunksPerSource.get();
 
         let response: Response;
         try {
-            response = await fetch(config.url, {
+            response = await fetch(url, {
                 method: "POST",
                 redirect: "follow",
                 headers: {
-                    ...(!config.keyless ? { authorization: `Bearer ${config.token}` } : { "X-Tavily-Access-Mode": "keyless" }),
+                    ...(!keyless ? { authorization: `Bearer ${token}` } : { "X-Tavily-Access-Mode": "keyless" }),
                     "content-type": "application/json",
                     accept: "application/json",
                     "user-agent": "deepseek-harness/0.0.1",
                 },
                 body: JSON.stringify({
                     query: request.query,
-                    search_depth: config.searchDepth,
-                    chunks_per_source: config.chunksPerSource,
+                    search_depth: searchDepth,
+                    chunks_per_source: chunksPerSource,
                     max_results: request.maxResults,
                     include_answer: true,
                 }),

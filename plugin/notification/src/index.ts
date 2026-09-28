@@ -1,13 +1,12 @@
 import type { Context } from "@deepseek-ai/cordis";
 
 import type { SessionId } from "@deepseek-ai/dsh-api-remotes/client";
-import type { } from "@deepseek-ai/dsh-api-session-controller/client";
-import type { } from "@deepseek-ai/dsh-client-locale/client";
-import type { } from "@deepseek-ai/dsh-client-ui-renderer/client";
-import type { } from "@deepseek-ai/dsh-client-ui-session/client";
-import type { } from "@deepseek-ai/dsh-client-ui-settings/client";
-import type { } from "@deepseek-ai/dsh-client-ui-slots";
-import type { } from "@deepseek-ai/dsh-client-ui-workspace/client";
+import type {} from "@deepseek-ai/dsh-api-session-controller/client";
+import type {} from "@deepseek-ai/dsh-client-locale/client";
+import type {} from "@deepseek-ai/dsh-client-ui-settings/client";
+import type {} from "@deepseek-ai/dsh-client-ui-renderer/client";
+import type {} from "@deepseek-ai/dsh-client-ui-workspace/client";
+import type {} from "@deepseek-ai/dsh-client-ui-session/client";
 
 import { type LocaleKeys, en, zh } from "./locales";
 
@@ -47,20 +46,23 @@ export const apply = (ctx: Context) => {
             if (running) return;
 
             const summary = ctx.sessions.list.getSnapshot().byId[id];
-            if (summary?.origin !== undefined) return;
+            if (summary?.origin) return;
 
             notify(t("finished.title"), summary?.displayTitle ?? id, ctx, id);
         });
     }, `${name}: finished`);
 
     ctx.effect(() => {
-        let previous = new Set(ctx.uiSession.pendingInteractions.getSnapshot().keys());
-        return ctx.uiSession.pendingInteractions.subscribe(() => {
-            const current = new Set(ctx.uiSession.pendingInteractions.getSnapshot().keys());
+        let previous = [...ctx.uiSession.sessionStatus.getSnapshot()].filter(([, status]) => status.pendingInteraction).map(([id]) => id);
+        return ctx.uiSession.sessionStatus.subscribe(() => {
+            const current = [...ctx.uiSession.sessionStatus.getSnapshot()]
+                .filter(([, status]) => status.pendingInteraction)
+                .map(([id]) => id);
             for (const id of current) {
-                if (previous.has(id)) continue;
+                if (previous.includes(id)) continue;
 
                 const summary = ctx.sessions.list.getSnapshot().byId[id];
+                if (summary?.origin) continue;
 
                 notify(t("waiting.title"), summary?.displayTitle ?? id, ctx, id);
             }
