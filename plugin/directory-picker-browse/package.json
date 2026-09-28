@@ -1,12 +1,12 @@
 {
-    "name": "@noirhare/dsh-client-ui-directory-picker-browse",
+    "name": "@noirhare/dsh-directory-picker-browse",
     "version": "0.1.1",
     "license": "MIT",
     "author": "NoirHare",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/NoirHare/dsh-bundle",
-        "directory": "plugin/client-ui-directory-picker-browse"
+        "directory": "plugin/directory-picker-browse"
     },
     "publishConfig": {
         "access": "public"
