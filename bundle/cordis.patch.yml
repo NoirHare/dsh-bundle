@@ -79,25 +79,6 @@
   disabled: true
 - id: preset-cordis
   disabled: true
-- id: preset-web
-  name: "@deepseek-ai/dsh-agent-preset"
-  config:
-    id: web
-    order: 1
-    plugins: []
-- id: preset-fs
-  name: "@deepseek-ai/dsh-agent-preset"
-  config:
-    id: fs
-    order: 2
-    plugins:
-      # Enabled file system
-      - id: tool-fs
-        name: "@deepseek-ai/dsh-tool-fs"
-      - id: tool-fs-search
-        name: "@deepseek-ai/dsh-tool-fs-search"
-        config:
-          sampleOverCapGlobResults: false
 
 # @noirhare/dsh-agent-presets-roots
 - id: agent-presets
@@ -118,6 +99,26 @@
     # Enable ask
     - id: tool-ask-user
       name: "@deepseek-ai/dsh-tool-ask-user"
+    # presets
+    - id: preset-web
+      name: "@deepseek-ai/dsh-agent-preset"
+      config:
+        id: web
+        order: 1
+        plugins: []
+    - id: preset-fs
+      name: "@deepseek-ai/dsh-agent-preset"
+      config:
+        id: fs
+        order: 2
+        plugins:
+          # Enabled file system
+          - id: tool-fs
+            name: "@deepseek-ai/dsh-tool-fs"
+          - id: tool-fs-search
+            name: "@deepseek-ai/dsh-tool-fs-search"
+            config:
+              sampleOverCapGlobResults: false
     # @noirhare/dsh-client-ui-directory-picker-browse
     - id: "@noirhare/dsh-directory-picker-browse-host"
       name: "@noirhare/dsh-directory-picker-browse-host"
