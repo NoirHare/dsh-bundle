@@ -11,12 +11,12 @@ export const name = "@noirhare/dsh-web-search-tavily";
 export const inject = ["settings", "web"];
 
 export const Config = z.object({
-    url: z.string().volatile().default(TAILY_DEFAULT_URL),
-    token: z.string().volatile().min(2),
-    keyless: z.boolean().volatile().default(false),
+    url: z.string().default(TAILY_DEFAULT_URL).volatile(),
+    token: z.string().min(2).volatile(),
+    keyless: z.boolean().default(false).volatile(),
 
     searchDepth: z.union(["basic", "advanced", "fast", "ultra-fast"] as const).volatile(),
-    chunksPerSource: z.number().volatile().min(1).max(3),
+    chunksPerSource: z.number().min(1).max(3).volatile(),
 });
 
 export const apply = (ctx: Context, config: ReturnType<typeof Config>) => {

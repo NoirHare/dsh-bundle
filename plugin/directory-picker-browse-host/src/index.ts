@@ -25,7 +25,7 @@ export default class BrowseDirectoryPicker extends DirectoryPicker implements Di
     static inject: string[] = [];
 
     static Config = z.object({
-        home: z.string().volatile().default(OS.homedir()),
+        home: z.string().default(OS.homedir()).volatile(),
     });
 
     kind: "browse" = "browse";
