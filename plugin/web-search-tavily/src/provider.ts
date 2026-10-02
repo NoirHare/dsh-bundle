@@ -2,6 +2,7 @@ import type { Config } from "./index";
 
 import { WebError, WebSearchProvider, WebSearchRequest, WebSearchResult } from "@deepseek-ai/dsh-web";
 import { name } from "./index";
+import { unlink } from "fs";
 
 type TailySearchResponse = {
     answer: string;
@@ -18,44 +19,26 @@ const isAbortError = (error: unknown) => {
     return error instanceof DOMException && error.name === "AbortError";
 };
 
-const formatError = (error: unknown) => {
-    if (!(error instanceof Error)) return String(error);
+const formatError = (e: unknown): string => {
+    if (!(e instanceof Error)) return String(e);
 
-    let result = "";
-    const push = (e: unknown) => {
-        if (!e) return;
+    let result = e.message;
 
-        if (!(error instanceof Error)) {
-            result += String(error);
-            return;
-        }
+    if (e instanceof AggregateError) {
+        result += `, errors [${e.errors.map((err) => formatError(err)).join(" | ")}]`;
+    }
 
-        if (error instanceof AggregateError) {
-            result += "[";
-            for (let i = 0; i < error.errors.length; i++) {
-                const e = error.errors[i];
-                push(e);
-                if (i !== error.errors.length - 1) {
-                    result += ` | `;
-                }
-            }
-            result += "]";
-            return;
-        }
+    if (e.cause !== undefined && e.cause !== null) {
+        result += `, cause [${formatError(e.cause)}]`;
+    }
 
-        result += `${error.name}: ${error.message}`;
-        if (error.cause) {
-            result += "[";
-            push(error.cause);
-            result += "]";
-        }
-    };
+    return result;
 };
 
 export class TavilyWebSearchProvider implements WebSearchProvider {
     id: string = name;
 
-    constructor(readonly config: ReturnType<typeof Config>) {}
+    constructor(readonly config: ReturnType<typeof Config>) { }
 
     available(): boolean {
         const keyless = this.config.keyless.get();
