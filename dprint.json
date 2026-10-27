@@ -1,0 +1,26 @@
+{
+    "lineWidth": 120,
+    "indentWidth": 4,
+    "typescript": {
+    },
+    "json": {
+    },
+    "markdown": {
+    },
+    "malva": {
+    },
+    "yaml": {
+        "indentWidth": 2
+    },
+    "excludes": [
+        "**/node_modules",
+        "**/*-lock.json"
+    ],
+    "plugins": [
+        "npm:@dprint/typescript@0.96.1",
+        "npm:@dprint/json@0.25.2",
+        "npm:@dprint/markdown@0.26.0",
+        "npm:dprint-plugin-malva@0.16.0",
+        "npm:dprint-plugin-yaml@0.6.0"
+    ]
+}
