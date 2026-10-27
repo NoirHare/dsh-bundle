@@ -55,7 +55,6 @@
 - id: system-prompt
   name: "@deepseek-ai/dsh-system-prompt"
   config:
-    personaPrefix: Your working directory is {{cwd}}.
     personaSuffix: All interactions with users are conducted in Chinese.
     includeHarnessIdentity: false
 - id: web-runtime
@@ -80,14 +79,6 @@
 - id: preset-cordis
   disabled: true
 
-# @noirhare/dsh-agent-presets-roots
-- id: agent-presets
-  inject:
-    - agentPresetsRoots
-  config:
-    default: chat
-    roots: !!js ctx.agentPresetsRoots
-    includeShippedRoot: false
 # @noirhare/dsh-client-ui-directory-picker-browse
 - id: directory-picker
   disabled: true
