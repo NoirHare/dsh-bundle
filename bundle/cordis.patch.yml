@@ -7,7 +7,7 @@
 # Disable DeepSeek
 - id: llm-deepseek
   disabled: true
-- id: web-search-deepseek
+- id: deepseek-search-api
   disabled: true
 
 # Disable
@@ -57,14 +57,8 @@
   config:
     personaSuffix: All interactions with users are conducted in Chinese.
     includeHarnessIdentity: false
-- id: web-runtime
-  inject:
-    - webStartup
-  config:
-    openBrowser: !!js ctx.webStartup.openBrowser
-    printUrl: true
-    surfaceContext: false
-    trustedHosts: !!js ctx.webStartup.trustedHosts
+- id: harness-dev-context
+  disabled: true
 
 # presets
 - id: agent-preset-registry
