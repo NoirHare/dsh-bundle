@@ -82,9 +82,6 @@
 # @noirhare/dsh-client-ui-directory-picker-browse
 - id: directory-picker
   disabled: true
-# @noirhare/dsh-host-webserver
-- id: webserver
-  disabled: true
 
 - insert:
     # Enable ask
@@ -115,12 +112,6 @@
       name: "@noirhare/dsh-directory-picker-browse-host"
     - id: "@noirhare/dsh-directory-picker-browse-client"
       name: "@noirhare/dsh-directory-picker-browse-client"
-    # @noirhare/dsh-host-webserver
-    - id: "@noirhare/dsh-host-webserver"
-      name: "@noirhare/dsh-host-webserver"
-      config:
-        host: !!js ctx.webStartup.host ?? '127.0.0.1'
-        port: !!js ctx.webStartup.port ?? 3080
     # @noirhare/dsh-notification
     - id: "@noirhare/dsh-notification"
       name: "@noirhare/dsh-notification"
