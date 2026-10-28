@@ -7,7 +7,9 @@
 # Disable DeepSeek
 - id: llm-deepseek
   disabled: true
-- id: deepseek-search-api
+- id: web-deepseek-api
+  disabled: true
+- id: web-search-deepseek
   disabled: true
 
 # Disable
@@ -30,6 +32,10 @@
 # Configure web
 - id: web
   config:
+
+# Disable working_directory
+- id: tool-working-directory
+  disabled: true
 
 # Enable compaction
 - id: compaction-basic
