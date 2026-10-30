@@ -1,6 +1,6 @@
 {
     "name": "@noirhare/dsh-bundle",
-    "version": "0.2.5",
+    "version": "0.2.6",
     "license": "MIT",
     "author": "NoirHare",
     "repository": {
@@ -15,6 +15,7 @@
         "cordis.patch.yml"
     ],
     "dependencies": {
+        "@noirhare/dsh-no-dsh": "workspace:^",
         "@noirhare/dsh-notification": "workspace:^",
         "@noirhare/dsh-web-search-tavily": "workspace:^",
         "@noirhare/dsh-directory-picker-browse-client": "workspace:^",
