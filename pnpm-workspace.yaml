@@ -34,6 +34,8 @@ catalog:
   "@deepseek-ai/dsh-host-directory-picker": ^0.2.1-rc.2
   "@deepseek-ai/dsh-host-directory-picker-browse": ^0.2.1-rc.2
   "@deepseek-ai/dsh-client-connection": ^0.2.1-rc.2
+  "@deepseek-ai/dsh-system-prompt": ^0.2.1-rc.2
+  "@deepseek-ai/dsh-agent": ^0.2.1-rc.2
 
 packageExtensions:
   '@deepseek-ai/dsh-api-remotes':
