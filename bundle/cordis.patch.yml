@@ -112,9 +112,9 @@
       name: "@noirhare/dsh-directory-picker-browse-host"
     - id: "@noirhare/dsh-directory-picker-browse-client"
       name: "@noirhare/dsh-directory-picker-browse-client"
-    # @noirhare/dsh-no-dsh
-    - id: "@noirhare/dsh-no-dsh"
-      name: "@noirhare/dsh-no-dsh"
+    # @noirhare/dsh-not-dsh
+    - id: "@noirhare/dsh-not-dsh"
+      name: "@noirhare/dsh-not-dsh"
     # @noirhare/dsh-notification
     - id: "@noirhare/dsh-notification"
       name: "@noirhare/dsh-notification"

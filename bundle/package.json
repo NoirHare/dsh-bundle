@@ -15,7 +15,7 @@
         "cordis.patch.yml"
     ],
     "dependencies": {
-        "@noirhare/dsh-no-dsh": "workspace:^",
+        "@noirhare/dsh-not-dsh": "workspace:^",
         "@noirhare/dsh-notification": "workspace:^",
         "@noirhare/dsh-web-search-tavily": "workspace:^",
         "@noirhare/dsh-directory-picker-browse-client": "workspace:^",
