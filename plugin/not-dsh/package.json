@@ -1,6 +1,6 @@
 {
     "name": "@noirhare/dsh-not-dsh",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "license": "MIT",
     "author": "NoirHare",
     "repository": {
@@ -23,6 +23,7 @@
     ],
     "type": "module",
     "scripts": {
+        "prepublish": "pnpm build",
         "build": "pnpm exec tsc && pnpm exec host-build"
     },
     "devDependencies": {
